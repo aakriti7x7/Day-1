@@ -1,0 +1,79 @@
+.frame{
+    width: 400px;
+    height: 400px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loader{
+    width: 120px;
+    height: 120px;
+    transform-style: preserve-3d;          /* new */
+    transform:rotateX(-25deg) rotateY(45deg);
+}
+.loader .plane{
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(0, 128, 0, 0.096);
+}
+.loader .top{
+    transform: rotateX(90deg) translateZ(60px);
+}
+.loader .bottom{
+    background: green;
+    transform: rotateX(90deg) translateZ(-60px);
+}
+.loader .left{
+    transform: rotatey(90deg) translatez(-60px);
+}
+.loader .right{
+    transform: rotatey(-90deg) translatez(-60px);
+}
+.loader .back{
+    transform: translatez(-60px)
+}
+.loader .front{
+    transform: translatez(60px)
+}
+
+.loader .filltop{
+    background: green;
+    transform: rotateX(90deg);
+    animation: filltop 4s ease-in-out alternate infinite;
+}
+
+/* new */
+.loader .left::before,         
+.loader .right::before,
+.loader .front::before,
+.loader .back::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: green;
+    transform-origin: bottom;
+    animation: fill 4s ease-in-out alternate infinite;
+}
+
+@keyframes fill{
+    0%{
+        transform: scaley(0);
+    }
+    100%{
+        transform: scaley(1);
+    }
+}
+
+@keyframes filltop{
+    0%{
+        transform: rotateX(90deg) translateZ(-60px);
+    }
+    100%{
+        transform: rotateX(90deg) translateZ(0px);
+    }
+}
